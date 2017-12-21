@@ -1,4 +1,4 @@
-function [q] = ShallowWENO1D(x,q,h,m,CFL,FinalTime)
+function [q] = ShallowWENO1D(x,q,h,m,CFL,FinalTime, BC, flux, source)
 % function [q] = ShallowWENODriver1D(x,q,h,m,CFL,gamma,FinalTime)
 % Purpose  : Integrate 1D Shallow water equations until FinalTime using a WENO
 %            scheme and a 3rd order SSP-RK
@@ -34,21 +34,15 @@ while (time<FinalTime)
 
     
   %% Update solution
-  rhsq  = ShallowWENOrhs1D(x,q,h,time,k,m,Crec,dw,beta, lambda_max); 
+  rhsq  = ShallowWENOrhs1D(x,q,h,time,k,m,Crec,dw,beta, lambda_max, BC, flux, source); 
   q1 = q + k*rhsq;
-  rhsq  = ShallowWENOrhs1D(x,q1,h,time+k,k,m,Crec,dw,beta,lambda_max); 
+  rhsq  = ShallowWENOrhs1D(x,q1,h,time+k,k,m,Crec,dw,beta,lambda_max, BC, flux, source); 
   q2 = (3*q + q1 + k*rhsq)/4;
-  rhsq  = ShallowWENOrhs1D(x,q2,h,time+k/2,k,m,Crec,dw,beta,lambda_max); 
+  rhsq  = ShallowWENOrhs1D(x,q2,h,time+k/2,k,m,Crec,dw,beta,lambda_max, BC, flux, source); 
   q  = (q + 2*q2 + 2*k*rhsq)/3;
   time = time+k; 
   tstep = tstep+1;
   
-  plot(q(:,2));
-  hold on;
-  plot(q(:,1));
-  hold off;
-  xlabel(sprintf('time %f', time));
-  drawnow;
 
 end
 return
