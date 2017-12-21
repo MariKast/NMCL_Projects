@@ -32,5 +32,5 @@ ql = [hl(2:N+1) ml(2:N+1)];
 qr = [hr(2:N+1) mr(2:N+1)]; 
 qp = [hl(3:N+2) ml(3:N+2)]; 
 qm = [hr(1:N)   mr(1:N)];
-dq = - (ShallowLF(qr,qp,lambda_max) - ShallowLF(qm,ql,lambda_max))/h +source;
+dq = - (ShallowRoe(qr,qp) - ShallowRoe(qm,ql))/h +source;
 return

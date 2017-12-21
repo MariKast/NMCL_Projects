@@ -43,7 +43,10 @@ while (time<FinalTime)
   time = time+k; 
   tstep = tstep+1;
   
-  plot(q(:,2)./q(:,1));
+  plot(q(:,2));
+  hold on;
+  plot(q(:,1));
+  hold off;
   xlabel(sprintf('time %f', time));
   drawnow;
 
