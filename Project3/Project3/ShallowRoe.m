@@ -5,6 +5,7 @@ function [numflux] = ShallowRoe(u,v,q)
 
 % Compute flux for u
 fu = calcFluxSW(u);
+5+3;
 
 % Compute flux for v
 fv = calcFluxSW(v);
