@@ -42,7 +42,6 @@ while (time<FinalTime)
   q  = (q + 2*q2 + 2*k*rhsq)/3;
   time = time+k; 
   tstep = tstep+1;
-  
 
 end
 return

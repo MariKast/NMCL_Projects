@@ -4,8 +4,9 @@ close all
 
 
 % Weno order and number of cells for loop
-order =[2];
-num_cells = [ 64, 128, 256]; % 512 1024];
+order = [2];
+num_cells = [ 64, 128, 256];% 512 1024];
+num_cells =[256];
 
 % Set problem parameters
 L = 2; 
@@ -13,7 +14,7 @@ FinalTime = 2;
 CFL = 0.50; 
 source = true;
 u_0 = 0.25;
-flux ='LF';
+flux ='R';
 BC= 'P';
 
 error= zeros(length(order),length(num_cells));
@@ -25,9 +26,7 @@ for i=1:length(order)
         h = L/num_cells(j);
         % Initialize solution 
         x = [0:h:2]'; %values correspond to cell boundaries
-        x_mid = x(1:end-1)+ 0.5*h;
         [h_init, m_init] = initial_1_ex(x);
-        % Solve Problem
         q = [h_init m_init];
         [q] = ShallowWENO1D(x,q,h,m,CFL,FinalTime,BC, flux, source);
         % Calculate the error
@@ -42,17 +41,18 @@ end
 % Plot error
 figure;
 loglog(L./num_cells, error(1,:),'-x', 'LineWidth', 1.5);
+hold on;
 grid on;
 polyfit(log(L./num_cells), log(error(1,:)),1)
 %% Show plot for really fine solution.
 [h_an, m_an] = initial_1_ex(x-FinalTime);
 
 figure;
-plot(x_mid,q(:,1),'b');
+plot(x,q(:,1),'b');
 hold on;
-plot(x_mid,h_an,'--');
+plot(x,h_an,'--');
 
 figure;
-plot(x_mid,q(:,2),'b');
-plot(x_mid,m_an,'--');
+plot(x,q(:,2),'b');
+plot(x,m_an,'--');
 

@@ -2,7 +2,7 @@ function [dq] = ShallowWENOrhs1D(x,q,h,time,k,m,Crec,dw,beta,lambda_max, BC, flu
 % function [dq] = ShallowWENOrhs1D(x,q,h,k,m,Crec,dw,beta,maxvel)
 % Purpose: Evaluate right hand side for Shallow water equations using a WENO method
 % with reconstruction on the conserved variables
-N = length(x)-1;
+N = length(x);
 dq = zeros(N,2);
 ql = zeros(N,2);
 qr = zeros(N,2);
