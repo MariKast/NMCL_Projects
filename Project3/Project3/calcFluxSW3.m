@@ -1,4 +1,4 @@
-function [ flux] = calcFluxSW( q )
+function [ flux] = calcFluxSW3( q )
 %calcFluxSW  Calculates the exact flux of the shallow water equation.
 flux = zeros(size(q));
 h = q(:,1);

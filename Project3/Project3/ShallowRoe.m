@@ -4,10 +4,10 @@ function [numflux] = ShallowRoe(u,v)
 % the Euler equations
 
 % Compute flux for u
-fu = calcFluxSW(u);
+fu = calcFluxSW3(u);
 
 % Compute flux for v
-fv = calcFluxSW(v);
+fv = calcFluxSW3(v);
 
 % Transform into z coordinates
 fact_u = 1./sqrt(u(:,1));

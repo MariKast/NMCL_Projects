@@ -4,8 +4,8 @@ close all
 
 
 % Weno order and number of cells for loop
-order =[1];
-num_cells = [ 64, 128, 256, 512 1024];
+order =[2];
+num_cells = [ 64, 128, 256]; % 512 1024];
 
 % Set problem parameters
 L = 2; 
@@ -42,6 +42,7 @@ end
 % Plot error
 figure;
 loglog(L./num_cells, error(1,:),'-x', 'LineWidth', 1.5);
+grid on;
 polyfit(log(L./num_cells), log(error(1,:)),1)
 %% Show plot for really fine solution.
 [h_an, m_an] = initial_1_ex(x-FinalTime);

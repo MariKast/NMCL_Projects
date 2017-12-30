@@ -4,10 +4,10 @@ function [numflux] = ShallowLF(u,v,lambdamax)
 % the Euler equations
 
 % Compute flux for u
-fu = calcFluxSW(u);
+fu = calcFluxSW3(u);
 
 % Compute flux for v
-fv = calcFluxSW(v);
+fv = calcFluxSW3(v);
 
 % Evaluate numerical flux
 numflux = (fu+fv)/2 - lambdamax/2*(v-u);
